@@ -35,6 +35,7 @@
 
 General:
 
+- Just wanted to clarify that tow hours for what i wanted to do is to little so take that in mind, I will explain everyting.
 - Architecture was think to be pre-rendered at build time so the final bundle will have pre-generated pages so the app
   will be really fast.
 - I will discuss other implementation with detain on the review interview.

@@ -1,23 +1,65 @@
-# Next.js + Jest
+# Task CybSafe
 
-This example shows how to configure Jest to work with Next.js.
+* Task Started at Sat 22 Mar 2022
+* Author: Diogo Esteves
 
-This includes Next.js' built-in support for Global CSS, CSS Modules and TypeScript.
+#### Table of Contents
 
-## How to Use
+1. [Installation Instructions](#installation-instructions)
+2. [Test Instructions](#test-instructions)
+3. [Architecture](#architecture-decisions)
 
-Quickly get started using [Create Next App](https://github.com/vercel/next.js/tree/canary/packages/create-next-app#readme)!
+- Task can be found : [task](https://cybsafewiki.notion.site/CybSafe-React-Challenge-a2954659c5ed4a11a9e6cda2c737f1a5)
 
-In your terminal, run the following command:
+## Installation Instructions
 
-```bash
-npx create-next-app --example with-jest with-jest-app
-# or
-yarn create next-app --example with-jest with-jest-app
-```
+### Available Scripts
 
-## Run Jest Tests
+#### `npm run dev`
 
-```bash
-npm test
-```
+#### `npm run lint`
+
+#### `npm build`
+
+#### `npm run start`
+
+## Test Instructions
+
+- Testes aren't implemented since in two hours a had to make a decision, and I choose the implementation as priority.
+
+#### `npm test`
+
+#### `npm run test:ci`
+
+## Architecture Decisions
+
+General:
+
+- Architecture was think to be pre-rendered at build time so the final bundle will have pre-generated pages so the app
+  will be really fast.
+- I will discuss other implementation with detain on the review interview.
+
+Accessibility:
+
+- Not optimized I will explain what I would do it on the review interview.
+
+Styles:
+
+- I didn't take any attention to the styles I will explain my view and the wanted design on the review interview.
+
+File Structure:
+
+- The file structure was built with these task necessities in mind and is fully scalable and easy to navigate and
+  maintain.
+- Every aspect of the respective folder lives inside, so it will be easy to onboard new team members.
+
+Code:
+
+- Code is not even close to my standards, but I will explain every optimization on the review interview.
+
+Documentation:
+
+- Did not have much time, so I had to choose between extensive documentation on each folder like
+  using [storybook](https://storybook.js.org/) or a quick explanation on `README.md`.
+- Please don't take it like I did not mind about documentation, just did not seem a priority, in my opinion, does not
+  mean that documentation is not important to the contrary.

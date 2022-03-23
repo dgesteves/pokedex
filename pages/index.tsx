@@ -1,65 +1,72 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import Pokemons from "@/components/Pokemons";
+import { BASE_URL } from "../constants";
+import { Props, Pokemon } from "@/components/Pokemons/types";
+import Head from "next/head";
+import { useCallback, useState } from "react";
+import { useRouter } from "next/router";
 
-import styles from '@/pages/index.module.css'
+export default function PokemonsPage({ chunks }: Props) {
+  const [qTerm, setQTerm] = useState("");
 
-export default function Home() {
+  const router = useRouter();
+
+  const onSubmit = useCallback(
+    (evt: any) => {
+      evt.preventDefault();
+
+      for (const chunk of chunks) {
+        const pokemon = chunk.find((name) => name === qTerm);
+        if (pokemon) {
+          router.push(`/${pokemon}`);
+          break;
+        }
+      }
+    },
+    [chunks, router, qTerm]
+  );
+
+  const onChange = useCallback((evt: any) => {
+    setQTerm(evt.target.value);
+  }, []);
+
   return (
-    <div className={styles.container}>
+    <>
       <Head>
-        <title>Create Next App</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>Pokemon List</title>
+        <meta
+          name="description"
+          content="Page with a list of all pokemons with pagination and search of specific Pokemon."
+        />
       </Head>
+      <form onSubmit={onSubmit}>
+        <label htmlFor="pokemon-search">Search a pokemon : </label>
+        <input
+          type="search"
+          id="pokemon-search"
+          name="q"
+          value={qTerm}
+          onChange={onChange}
+        />
+      </form>
+      <Pokemons chunks={chunks} />
+    </>
+  );
+}
 
-      <main>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
+export async function getStaticProps() {
+  const res = await fetch(`${BASE_URL}?limit=1126`);
+  const { results } = await res.json();
 
-        <p className={styles.description}>
-          Get started by editing <code>pages/index.js</code>
-        </p>
+  const names = results.map((pokemon: Pokemon) => pokemon.name).sort();
+  let chunks = [];
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+  for (let i = 0; i < names.length; i += 15) {
+    chunks.push(names.slice(i, i + 15));
+  }
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a href="https://vercel.com/new" className={styles.card}>
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
-      </main>
-
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
-    </div>
-  )
+  return {
+    props: {
+      chunks,
+    },
+  };
 }

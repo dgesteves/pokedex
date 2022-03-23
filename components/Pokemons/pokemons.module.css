@@ -1,0 +1,32 @@
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0 auto;
+    max-width: 300px;
+    border: 4px solid var(--fighting);
+    border-radius: 5px;
+    padding: 2px;
+    height: 80vh;
+}
+
+.pokemon {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    border: 4px solid var(--fighting);
+    border-radius: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+.pokemon a {
+    width: 90%;
+    text-align: left;
+}
+
+.nav {
+    display: flex
+}

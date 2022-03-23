@@ -1,0 +1,12 @@
+.nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav a {
+    color: var(--electric);
+    font-weight: 600;
+    font-size: calc(var(--size_9) * 2);
+    -webkit-text-stroke: 4px var(--water);
+}

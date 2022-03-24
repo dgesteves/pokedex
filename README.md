@@ -1,5 +1,3 @@
-# Task CybSafe
-
 * Task Started at Sat 22 Mar 2022
 * Author: Diogo Esteves
 
